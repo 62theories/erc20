@@ -1,6 +1,7 @@
 import * as dotenv from "dotenv";
 
 import { HardhatUserConfig, task } from "hardhat/config";
+import accountUtils from "./utils/accounts";
 import "@nomiclabs/hardhat-etherscan";
 import "@nomiclabs/hardhat-waffle";
 import "@typechain/hardhat";
@@ -29,6 +30,10 @@ const config: HardhatUserConfig = {
       url: process.env.ROPSTEN_URL || "",
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+    },
+    bsc_test: {
+      url: `https://data-seed-prebsc-1-s1.binance.org:8545/`,
+      accounts: accountUtils.getAccounts(),
     },
   },
   gasReporter: {
